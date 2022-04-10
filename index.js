@@ -65,11 +65,15 @@ async function get() {
     }
   });
 
-  core.setOutput('issue_number', result_issue_numer);
-  core.setOutput('title', result.info.title);
-  core.setOutput('tags', result.info.tags);
-  core.setOutput('reward', result.info.reward);
-  core.setOutput('content', result.content);
+  if (result) {
+    core.setOutput('issue_number', result_issue_numer);
+    core.setOutput('title', result.info.title);
+    core.setOutput('tags', result.info.tags);
+    core.setOutput('reward', result.info.reward);
+    core.setOutput('content', result.content);
+  } else {
+    core.setOutput('issue_number', 0);
+  }
   return;
 }
 
