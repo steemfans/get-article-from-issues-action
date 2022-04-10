@@ -14973,6 +14973,7 @@ async function get() {
   console.log('issueList:', issueList.data, 'now:', now);
 
   issueList.data.forEach(async (post) => {
+    console.log('user_info:', post.user.login, owner);
     if (post.user.login !== owner) {
       await close(post.number);
       return;
