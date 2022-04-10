@@ -8,4 +8,6 @@
 # To enable this hook, rename this file to "pre-commit".
 
 npm run build
+git add dist/index.js
+git commit -m "update build file"
 

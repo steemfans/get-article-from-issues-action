@@ -14946,8 +14946,6 @@ async function main() {
     page: 1,
   });
 
-  console.log('issueList:', issueList);
-
   if (issueList.data.length === 0) {
     core.setOutput('issue_id', 0);
     return;
@@ -14961,6 +14959,7 @@ async function main() {
 
   issueList.data.forEach(post => {
     const bodyInfo = utils.parseContent(post.body);
+    console.log('bodyInfo:', bodyInfo);
     if (!bodyInfo.info.date && result === undefined) {
       result = bodyInfo;
       result_issue_numer = post.number;
