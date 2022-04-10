@@ -14967,6 +14967,8 @@ async function get() {
 
   const now = moment().utc();
 
+  console.log('issueList:', issueList.data);
+
   issueList.data.forEach(post => {
     if (post.user.login !== owner) return;
     const bodyInfo = utils.parseContent(post.body);
