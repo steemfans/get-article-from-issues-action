@@ -47,7 +47,7 @@ async function get() {
 
   console.log('issueList:', issueList.data, 'now:', now);
 
-  issueList.data.forEach(post => {
+  issueList.data.forEach(async (post) => {
     if (post.user.login !== owner) {
       await close(post.number);
       return;
