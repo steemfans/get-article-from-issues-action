@@ -48,7 +48,10 @@ async function get() {
   console.log('issueList:', issueList.data, 'now:', now);
 
   issueList.data.forEach(post => {
-    if (post.user.login !== owner) return;
+    if (post.user.login !== owner) {
+      await close(post.number);
+      return;
+    }
     const bodyInfo = utils.parseContent(post.body);
     console.log('bodyInfo:', bodyInfo);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
