@@ -1,12 +1,19 @@
-const assert = require('assert');
 const core = require('@actions/core');
 const github = require('@actions/github');
 const utils = require('./utils');
 const moment = require('moment-timezone');
 
 async function main() {
-  await get();
-
+  const issue_id = core.getInput('issue_id');
+  try {
+    if (!issue_id) {
+      await get();
+    } else {
+      await close(issue_id);
+    }
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
 
 async function get() {
@@ -58,6 +65,20 @@ async function get() {
   core.setOutput('reward', result.info.reward);
   core.setOutput('content', result.content);
   return;
+}
+
+async function close(issue_number) {
+  const token = core.getInput('token');
+  const repo = core.getInput('repo');
+  const owner = core.getInput('owner');
+
+  const octokit = github.getOctokit(token);
+  await octokit.rest.issues.update({
+    owner,
+    repo,
+    issue_number,
+    state: 'closed',
+  });
 }
 
 main();

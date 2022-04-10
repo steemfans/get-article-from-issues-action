@@ -14923,15 +14923,22 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-const assert = __nccwpck_require__(9491);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 const utils = __nccwpck_require__(1252);
 const moment = __nccwpck_require__(7936);
 
 async function main() {
-  await get();
-
+  const issue_id = core.getInput('issue_id');
+  try {
+    if (!issue_id) {
+      await get();
+    } else {
+      await close(issue_id);
+    }
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
 
 async function get() {
@@ -14983,6 +14990,20 @@ async function get() {
   core.setOutput('reward', result.info.reward);
   core.setOutput('content', result.content);
   return;
+}
+
+async function close(issue_number) {
+  const token = core.getInput('token');
+  const repo = core.getInput('repo');
+  const owner = core.getInput('owner');
+
+  const octokit = github.getOctokit(token);
+  await octokit.rest.issues.update({
+    owner,
+    repo,
+    issue_number,
+    state: 'closed',
+  });
 }
 
 main();
