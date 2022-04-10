@@ -14929,12 +14929,12 @@ const utils = __nccwpck_require__(1252);
 const moment = __nccwpck_require__(7936);
 
 async function main() {
-  const issue_id = core.getInput('issue_id');
+  const issue_number = core.getInput('issue_number');
   try {
-    if (!issue_id) {
+    if (!issue_number) {
       await get();
     } else {
-      await close(issue_id);
+      await close(issue_number);
     }
   } catch (error) {
     core.setFailed(error.message);
@@ -14984,7 +14984,7 @@ async function get() {
     }
   });
 
-  core.setOutput('issue_id', result_issue_numer);
+  core.setOutput('issue_number', result_issue_numer);
   core.setOutput('title', result.info.title);
   core.setOutput('tags', result.info.tags);
   core.setOutput('reward', result.info.reward);

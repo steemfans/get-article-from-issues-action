@@ -6,8 +6,8 @@ branding:
   color: 'gray-dark'
 description: 'Process issues for posting to Steem'
 inputs:
-  issue_id:
-    description: 'If you give this id, this issue will set closed.'
+  issue_number:
+    description: 'If you give this number, this issue will set closed.'
     required: false
   repo:
     description: 'Your repo name'
@@ -23,8 +23,8 @@ inputs:
     required: false
     default: UTC
 outputs:
-  issue_id:
-    description: 'The id of the issue that matches the filter'
+  issue_number:
+    description: 'The number of the issue that matches the filter'
   title:
     description: 'The title of the article that is found'
   content:
