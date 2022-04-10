@@ -14972,9 +14972,10 @@ async function get() {
   issueList.data.forEach(post => {
     if (post.user.login !== owner) return;
     const bodyInfo = utils.parseContent(post.body);
-    console.log('bodyInfo:', bodyInfo, result);
+    console.log('bodyInfo:', bodyInfo);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
     if (scheduleDate.isBefore(now)) {
+      console.log('result: ', result);
       if (result === undefined) {
         result = bodyInfo;
         result_issue_numer = post.number;
