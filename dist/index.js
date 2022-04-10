@@ -14968,6 +14968,7 @@ async function get() {
   const now = moment().utc();
 
   issueList.data.forEach(post => {
+    if (post.user.login !== owner) return;
     const bodyInfo = utils.parseContent(post.body);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
     if (scheduleDate.isBefore(now)) {
