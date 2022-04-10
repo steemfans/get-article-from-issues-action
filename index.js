@@ -36,7 +36,7 @@ async function main() {
     console.log('bodyInfo:', bodyInfo);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
     console.log('issue_schedule_utc_date:', scheduleDate, bodyInfo.info);
-    if (now.isBefore(scheduleDate)) {
+    if (scheduleDate.isBefore(now)) {
       if (result === undefined) {
         result = bodyInfo;
         result_issue_numer = post.number;
