@@ -14959,22 +14959,18 @@ async function main() {
   issueList.data.forEach(post => {
     const bodyInfo = utils.parseContent(post.body);
     console.log('bodyInfo:', bodyInfo);
-    if (!bodyInfo.info.date && result === undefined) {
-      result = bodyInfo;
-      result_issue_numer = post.number;
-    } else {
-      const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
-      console.log('issue_schedule_utc_date:', scheduleDate, bodyInfo.info);
-      if (now.isBefore(scheduleDate)) {
-        if (result === undefined) {
+    const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
+    console.log('issue_schedule_utc_date:', scheduleDate, bodyInfo.info);
+    if (now.isBefore(scheduleDate)) {
+      if (result === undefined) {
+        result = bodyInfo;
+        result_issue_numer = post.number;
+      } else {
+        const resultDate = moment.tz(result.info.date, tz).utc();
+        console.log('result_schedule_utc_date:', resultDate, result.info);
+        if (scheduleDate.isBefore(resultDate)) {
           result = bodyInfo;
           result_issue_numer = post.number;
-        } else {
-          const resultDate = moment.tz(result.info.date, tz).utc();
-          if (scheduleDate.isBefore(resultDate)) {
-            result = bodyInfo;
-            result_issue_numer = post.number;
-          }
         }
       }
     }
