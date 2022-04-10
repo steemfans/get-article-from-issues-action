@@ -5,6 +5,11 @@ const utils = require('./utils');
 const moment = require('moment-timezone');
 
 async function main() {
+  await get();
+
+}
+
+async function get() {
   const token = core.getInput('token');
   const repo = core.getInput('repo');
   const owner = core.getInput('owner');
@@ -29,20 +34,16 @@ async function main() {
   let result_issue_numer;
 
   const now = moment().utc();
-  console.log('current_utc_date:', now);
 
   issueList.data.forEach(post => {
     const bodyInfo = utils.parseContent(post.body);
-    console.log('bodyInfo:', bodyInfo);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
-    console.log('issue_schedule_utc_date:', scheduleDate, bodyInfo.info);
     if (scheduleDate.isBefore(now)) {
       if (result === undefined) {
         result = bodyInfo;
         result_issue_numer = post.number;
       } else {
         const resultDate = moment.tz(result.info.date, tz).utc();
-        console.log('result_schedule_utc_date:', resultDate, result.info);
         if (scheduleDate.isBefore(resultDate)) {
           result = bodyInfo;
           result_issue_numer = post.number;
