@@ -8468,6 +8468,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+const assert = __nccwpck_require__(9491);
 const core = __nccwpck_require__(2186);
 const github = __nccwpck_require__(5438);
 
@@ -8488,8 +8489,6 @@ async function main() {
 
   console.log('issueList:', issueList);
 
-  // You can also pass in additional options as a second parameter to getOctokit
-  // const octokit = github.getOctokit(myToken, {userAgent: "MyActionVersion1"});
 }
 
 main();

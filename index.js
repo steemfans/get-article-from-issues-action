@@ -1,3 +1,4 @@
+const assert = require('assert');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -18,8 +19,6 @@ async function main() {
 
   console.log('issueList:', issueList);
 
-  // You can also pass in additional options as a second parameter to getOctokit
-  // const octokit = github.getOctokit(myToken, {userAgent: "MyActionVersion1"});
 }
 
 main();
