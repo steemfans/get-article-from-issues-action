@@ -9,11 +9,8 @@ inputs:
   issue_number:
     description: 'If you give this number, this issue will set closed.'
     required: false
-  repo:
-    description: 'Your repo name'
-    required: true
-  owner:
-    description: 'The repo owner'
+  repository:
+    description: 'Your repository name, like username/repo'
     required: true
   token:
     description: 'The token of the repo'

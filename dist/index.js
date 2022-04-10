@@ -14943,9 +14943,12 @@ async function main() {
 
 async function get() {
   const token = core.getInput('token');
-  const repo = core.getInput('repo');
-  const owner = core.getInput('owner');
+  const repository = core.getInput('repository');
   const tz = core.getInput('tz');
+
+  const repoArr = repository.split('/');
+  const owner = repoArr[0];
+  const repo = repoArr[1];
 
   const octokit = github.getOctokit(token);
   const issueList = await octokit.rest.issues.listForRepo({
@@ -15004,8 +15007,10 @@ async function get() {
 
 async function close(issue_number) {
   const token = core.getInput('token');
-  const repo = core.getInput('repo');
-  const owner = core.getInput('owner');
+  const repository = core.getInput('repository');
+  const repoArr = repository.split('/');
+  const owner = repoArr[0];
+  const repo = repoArr[1];
 
   const octokit = github.getOctokit(token);
   await octokit.rest.issues.update({

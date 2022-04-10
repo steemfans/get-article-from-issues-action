@@ -3,11 +3,8 @@ This action is used to get eligible issue and process it for preparing posting t
 
 ## Inputs
 
-### `repo`
-**Required** The repo name.
-
-### `owner`
-**Required** The owner of the repo.
+### `repository`
+**Required** Your repository name, like username/repo.
 
 ### `token`
 **Required** The token of the repo.
