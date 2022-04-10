@@ -20,7 +20,7 @@ async function main() {
     page: 1,
   });
 
-  console.log('issueList:', issueList.data);
+  console.log('issueList:test:', issueList.data);
 
   if (issueList.data.length === 0) {
     core.setOutput('issue_id', 0);
