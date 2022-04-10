@@ -18,6 +18,10 @@ inputs:
   token:
     description: 'The token of the repo'
     required: true
+  tz:
+    description: 'Timezone setting'
+    required: false
+    default: UTC
 outputs:
   issue_id:
     description: 'The id of the issue that matches the filter'

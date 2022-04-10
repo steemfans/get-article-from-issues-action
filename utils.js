@@ -1,9 +1,9 @@
 const assert = require('assert');
 
 module.exports.parseContent = function (content) {
-  const arr1 = content.split("---\n");
+  const arr1 = content.split("---\r\n");
   assert(arr1.length === 3, '[error] content format error!');
-  const postInfoArr = arr1[1].trim().split("\n");
+  const postInfoArr = arr1[1].trim().split("\r\n");
   const body = arr1[2].trim();
 
   const postInfo = {};
