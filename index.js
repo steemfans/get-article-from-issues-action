@@ -42,13 +42,14 @@ async function get() {
 
   const now = moment().utc();
 
-  console.log('issueList:', issueList.data);
+  console.log('issueList:', issueList.data, 'now:', now);
 
   issueList.data.forEach(post => {
     if (post.user.login !== owner) return;
     const bodyInfo = utils.parseContent(post.body);
     console.log('bodyInfo:', bodyInfo);
     const scheduleDate = moment.tz(bodyInfo.info.date, tz).utc();
+    console.log('schedule_data:', scheduleDate);
     if (scheduleDate.isBefore(now)) {
       console.log('result: ', result);
       if (result === undefined) {
