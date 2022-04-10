@@ -1,1 +1,1 @@
-# Get Article From Issues Action
+# Process Issues for Posting to Steem Action

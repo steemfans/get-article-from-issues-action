@@ -13,7 +13,7 @@ inputs:
     description: 'Your repo name'
     required: true
   owner:
-    description: 'The repo\'s owner'
+    description: 'The repo owner'
     required: true
   token:
     description: 'The token of the repo'
