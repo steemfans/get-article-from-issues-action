@@ -1,0 +1,29 @@
+{
+  "name": "process-issues-for-posting-to-steem-action",
+  "version": "1.0.0",
+  "description": "Process issues for posting to Steem",
+  "main": "index.js",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.3"
+  },
+  "scripts": {
+    "build": "ncc build index.js -o dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steemfans/process-issues-for-posting-to-steem-action.git"
+  },
+  "keywords": [
+    "steem"
+  ],
+  "author": "ETY001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/steemfans/process-issues-for-posting-to-steem-action/issues"
+  },
+  "homepage": "https://github.com/steemfans/process-issues-for-posting-to-steem-action#readme"
+}

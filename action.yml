@@ -1,0 +1,34 @@
+name: 'Process Issues for Posting to Steem Action'
+author: 'ETY001'
+branding:
+  # https://actions-cool.github.io/github-action-branding/
+  icon: 'list'
+  color: 'gray-dark'
+description: 'Process issues for posting to Steem'
+inputs:
+  issue_id:
+    description: 'If you give this id, this issue will set closed.'
+    required: false
+  repo:
+    description: 'Your repo name'
+    required: true
+  owner:
+    description: 'The repo\'s owner'
+    required: true
+  token:
+    description: 'The token of the repo'
+    required: true
+outputs:
+  issue_id:
+    description: 'The id of the issue that matches the filter'
+  title:
+    description: 'The title of the article that is found'
+  content:
+    description: 'The content of the article that is found'
+  tags:
+    description: 'The tags of the article that is found'
+  reward:
+    description: 'The reward setting of the article that is found'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
