@@ -14711,7 +14711,7 @@ const assert = __nccwpck_require__(9491);
 module.exports.parseContent = function (content) {
   const arr1 = content.split("---\r\n");
   assert(arr1.length === 3, '[error] content format error!');
-  const postInfoArr = arr1[1].trim().split("\r\n");
+  const postInfoArr = arr1[1].split("\r\n");
   const body = arr1[2].trim();
 
   const postInfo = {};
