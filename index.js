@@ -45,7 +45,8 @@ async function get() {
 
   const now = moment().utc();
 
-  console.log('issueList:', issueList.data, 'now:', now);
+  // console.log('issueList:', issueList.data);
+  console.log('now:', now);
 
   issueList.data.forEach(async (post) => {
     console.log('user_info:', post.user.login, owner);
@@ -71,6 +72,8 @@ async function get() {
       }
     }
   });
+
+  console.log('result.length:', result.length);
 
   if (result) {
     core.setOutput('issue_number', result_issue_numer);

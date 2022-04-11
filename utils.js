@@ -6,6 +6,7 @@ module.exports.parseContent = function (content) {
   while ((match = re1.exec(content)) != null) {
     position.push(match.index);
   }
+  console.log('position:', position);
   assert(position.length >= 2, '[error] content format error!');
   const header = content.substr(position[0]+3, position[1]-position[0]-3);
   const body = content.substr(position[1]+3);

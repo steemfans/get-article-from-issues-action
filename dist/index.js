@@ -14714,6 +14714,7 @@ module.exports.parseContent = function (content) {
   while ((match = re1.exec(content)) != null) {
     position.push(match.index);
   }
+  console.log('position:', position);
   assert(position.length >= 2, '[error] content format error!');
   const header = content.substr(position[0]+3, position[1]-position[0]-3);
   const body = content.substr(position[1]+3);
@@ -14968,7 +14969,8 @@ async function get() {
 
   const now = moment().utc();
 
-  console.log('issueList:', issueList.data, 'now:', now);
+  // console.log('issueList:', issueList.data);
+  console.log('now:', now);
 
   issueList.data.forEach(async (post) => {
     console.log('user_info:', post.user.login, owner);
@@ -14994,6 +14996,8 @@ async function get() {
       }
     }
   });
+
+  console.log('result.length:', result.length);
 
   if (result) {
     core.setOutput('issue_number', result_issue_numer);
