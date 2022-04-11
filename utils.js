@@ -1,22 +1,20 @@
 const assert = require('assert');
 
 module.exports.parseContent = function (content) {
-  const arr1 = content.split("---");
-  assert(arr1.length === 3, '[error] content format error!');
-  const postInfoArr = arr1[1].trim().split("\r\n");
-  const body = arr1[2];
-
+  const re1 = /^-{3}$/gm;
+  const position = [];
+  while ((match = re1.exec(content)) != null) {
+    position.push(match.index);
+  }
+  assert(position.length >= 2, '[error] content format error!');
+  const header = content.substr(position[0]+3, position[1]-position[0]-3);
+  const body = content.substr(position[1]+3);
   const postInfo = {};
-  postInfoArr.forEach(info => {
-    const tmp = info.split(':');
-    postInfo[tmp[0].trim()] = info.substr(tmp[0].length + 1).trim()
+  const re2 = /^([\w]+):(.*)$/gm
+  const headerMatch = [...header.matchAll(re2)];
+  headerMatch.forEach(head => {
+    postInfo[head[1].trim()] = head[2].trim();
   });
-
-  assert('title' in postInfo, '[error] lost title field setting');
-  assert('tags' in postInfo, '[error] lost tags field setting');
-  assert('reward' in postInfo, '[error] lost reward field setting');
-  assert('date' in postInfo, '[error] lost date field setting');
-
   return {
     info: postInfo,
     content: body,
