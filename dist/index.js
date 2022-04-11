@@ -14997,7 +14997,7 @@ async function get() {
     }
   });
 
-  console.log('result.length:', result.length);
+  console.log('result:', result);
 
   if (result) {
     core.setOutput('issue_number', result_issue_numer);
