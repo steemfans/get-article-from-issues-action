@@ -15018,6 +15018,8 @@ async function close(issue_number) {
   const owner = repoArr[0];
   const repo = repoArr[1];
 
+  console.log('repo_info:', owner, repo, 'issue_number:', issue_number);
+
   const octokit = github.getOctokit(token);
   await octokit.rest.issues.update({
     owner,
